@@ -1,4 +1,4 @@
 class Flight < ActiveRecord::Base
-  has_many :passengers
-  has_many :passengers, through :booking
+  has_many :bookings
+  has_many :passengers, through: :bookings
 end
