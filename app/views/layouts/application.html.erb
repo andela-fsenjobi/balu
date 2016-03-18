@@ -1,14 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Balu</title>
+  <title>Baalu</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<!-- <%= yield %> -->
 
-</body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Baalu</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="height: 500px; background-image:url('http://emmastraveltales.co.uk/wp/wp-content/uploads/2014/07/plane.jpg'); background-repeat: no-repeat">
+      <div class="container text-center">
+        <h1>Reserve your flight!</h1>
+        <p>Baalu is a platform where users can search and make bookings for their local and international flights.</p>
+        <div class="row">
+          <form class="form-inline">
+            <div class="form-group form-group-lg">
+              <select class="form-control  transparent-input" id="flightFrom" placeholder="Where are you?">
+                <option>Lagos</option>
+                <option>London</option>
+                <option>Lusianna</option>
+                <option>Laos</option>
+                <option>Luxenburg</option>
+              </select>
+              <input type="text" class="form-control transparent-input" id="flightFrom" placeholder="Where are you?">
+            </div>
+            <div class="form-group form-group-lg">
+              <input type="text" class="form-control transparent-input" id="flightTo" placeholder="Where would you like to go?">
+            </div>
+            <div class="form-group form-group-lg">
+              <input type="number" class="form-control transparent-input" id="noOfPassengers" placeholder="How many people?">
+            </div>
+            <div class="form-group form-group-lg">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control transparent-input" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker1').datetimepicker();
+                    });
+                </script>
+            </div>
+            <button type="submit" class="btn btn-default btn-lg">
+              <span class="glyphicon glyphicon-search transparent-input" aria-hidden="true"></span>
+            </button>
+          </form>
+      </div><!-- /.row -->
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Flights</h1>
+      </div>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="https://www.bulletproofexec.com/wp-content/uploads/2011/01/plane-600x337.png" alt="Arik Airways" class="img-rounded">
+          </div>
+          <h5>Lagos to Abuja</h5>
+          <h6>Arik Airways <span class="pull-right">$ 50,000.00</span></h6>
+          <h6>Tuesdays <span class="pull-right">5:00PM GMT</span></h6>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+          <p><a class="btn btn-default btn-xs" href="#" role="button">View details</a><a class="btn btn-default btn-xs pull-right" href="#" role="button">Book Flight</a></p>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="https://www.bulletproofexec.com/wp-content/uploads/2011/01/plane-600x337.png" alt="Arik Airways" class="img-rounded">
+          </div>
+          <h5>Lagos to Abuja</h5>
+          <h6>Arik Airways <span class="pull-right">$ 50,000.00</span></h6>
+          <h6>Tuesdays <span class="pull-right">5:00PM GMT</span></h6>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+          <p><a class="btn btn-default btn-xs" href="#" role="button">View details</a><a class="btn btn-default btn-xs pull-right" href="#" role="button">Book Flight</a></p>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="https://www.bulletproofexec.com/wp-content/uploads/2011/01/plane-600x337.png" alt="Arik Airways" class="img-rounded">
+          </div>
+          <h5>Lagos to Abuja</h5>
+          <h6>Arik Airways <span class="pull-right">$ 50,000.00</span></h6>
+          <h6>Tuesdays <span class="pull-right">5:00PM GMT</span></h6>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+          <p><a class="btn btn-default btn-xs" href="#" role="button">View details</a><a class="btn btn-default btn-xs pull-right" href="#" role="button">Book Flight</a></p>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="https://www.bulletproofexec.com/wp-content/uploads/2011/01/plane-600x337.png" alt="Arik Airways" class="img-rounded">
+          </div>
+          <h5>Lagos to Abuja</h5>
+          <h6>Arik Airways <span class="pull-right">$ 50,000.00</span></h6>
+          <h6>Tuesdays <span class="pull-right">5:00PM GMT</span></h6>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+          <p><a class="btn btn-default btn-xs" href="#" role="button">View details</a><a class="btn btn-default btn-xs pull-right" href="#" role="button">Book Flight</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2016 Baalu, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
 </html>
