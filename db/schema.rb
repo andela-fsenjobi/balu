@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317081140) do
+ActiveRecord::Schema.define(version: 20160318173048) do
 
   create_table "airlines", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20160317081140) do
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "iata"
+    t.string   "icao"
+    t.string   "callsign"
   end
 
   create_table "airports", force: :cascade do |t|
@@ -42,6 +45,16 @@ ActiveRecord::Schema.define(version: 20160317081140) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "state_id"
+  end
+
+  add_index "cities", ["state_id"], name: "index_cities_on_state_id"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "abbr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,5 +96,14 @@ ActiveRecord::Schema.define(version: 20160317081140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "states", ["country_id"], name: "index_states_on_country_id"
 
 end

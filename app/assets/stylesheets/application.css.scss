@@ -16,12 +16,12 @@
  @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
     // $body-bg:                   #ecf0f1;
-    // $font-family-sans-serif:    'Audimat', 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    // $navbar-height:             45px;
-    // $navbar-default-bg:         white;
-    // $navbar-default-brand-color:black;
+    $font-family-sans-serif:    'Audimat', 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    $navbar-height:             45px;
+    $navbar-default-bg:         white;
+    $navbar-default-brand-color:black;
     // $brand-primary:             #c0392b;
-    // $jumbotron-bg:              white;
+    $jumbotron-bg:              white;
     // $link-color: #e74c3c;
 @import "bootstrap-sprockets";
 @import 'bootstrap';
@@ -33,5 +33,6 @@
 
  .transparent-input {
     background-color: rgba(0, 0, 0, 0);
+    color: #000000;
     border:none;
  }

@@ -5,6 +5,7 @@ class FlightsController < ApplicationController
   # GET /flights.json
   def index
     @flights = Flight.all
+    @airports = Airport.includes(:city)
   end
 
   # GET /flights/1
@@ -15,10 +16,14 @@ class FlightsController < ApplicationController
   # GET /flights/new
   def new
     @flight = Flight.new
+    @airports = Airport.includes(:city)
+    @planes = Plane.all
   end
 
   # GET /flights/1/edit
   def edit
+    @airports = Airport.includes(:city)
+    @planes = Plane.all
   end
 
   # POST /flights
