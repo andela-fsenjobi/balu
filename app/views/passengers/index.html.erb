@@ -1,4 +1,76 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Hello, world!</h1>
+    <p>...</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div>
+<div class="container">
+  <div class="page-header">
+    <h1>Lagos to Abuja <small>Arik Air</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">My Bookings</div>
+
+        <!-- Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Flight</th>
+              <th>Status</th>
+              <th>Details</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Lagos to Maiduguri</td>
+              <td>Completed</td>
+              <td>50,000</td>
+              <td>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Lagos to Maiduguri</td>
+              <td>Completed</td>
+              <td>50,000</td>
+              <td>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Lagos to Maiduguri</td>
+              <td>Completed</td>
+              <td>50,000</td>
+              <td>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <%= render 'flights/search_form' %>
+    </div>
+  </div>
+</div>
+
+<!-- <p id="notice"><%= notice %></p>
 
 <h1>Listing Passengers</h1>
 
@@ -30,4 +102,4 @@
 
 <br>
 
-<%= link_to 'New Passenger', new_passenger_path %>
+<%= link_to 'New Passenger', new_passenger_path %> -->

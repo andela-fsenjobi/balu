@@ -13,11 +13,15 @@
 
   <div class="field">
     <%= f.label :from %><br>
-    <%= f.number_field :from %>
+    <%= f.collection_select(:from, @airports.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :to %><br>
-    <%= f.number_field :to %>
+    <%= f.collection_select(:to, @airports.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
   </div>
   <div class="field">
     <%= f.label :departure %><br>
@@ -29,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :plane_id %><br>
-    <%= f.text_field :plane_id %>
+    <%= f.collection_select(:plane_id, @planes.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

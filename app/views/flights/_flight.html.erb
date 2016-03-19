@@ -1,0 +1,10 @@
+<div class="col-md-3">
+  <div class="thumbnail">
+    <img src="https://www.bulletproofexec.com/wp-content/uploads/2011/01/plane-600x337.png" alt="Arik Airways" class="img-rounded">
+  </div>
+  <h5><%= flight.airport.city.name %> to <%= flight.destination.city.name %></h5>
+  <h6><%= flight.plane.airline.name %><span class="pull-right"><%= number_to_currency(flight.price, locale: :ng)  %></span></h6>
+  <h6><%= flight.departure.strftime("%A") %> <span class="pull-right"><%= flight.departure.strftime("%H:%M %Z") %></span></h6>
+  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+  <p><%= link_to 'Show', flight, class: 'btn btn-default btn-xs' %><a class="btn btn-default btn-xs pull-right" href="#" role="button">Book Flight</a></p>
+</div>

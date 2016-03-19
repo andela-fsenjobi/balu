@@ -1,5 +1,41 @@
-<h1>New Booking</h1>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Hello, world!</h1>
+    <p>...</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div>
+<div class="container">
+  <div class="page-header">
+    <h1>Lagos to Abuja <small>Arik Air</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Flight Details<icon class=""></div>
+        <div class="panel-body">
+          <p>Here is a short description of the flight</p>
+        </div>
 
-<%= render 'form' %>
+        <!-- List group -->
+        <ul class="list-group">
+          <li class="list-group-item"><h4 class="capitalize">Departure Airport<span class="pull-right">MMA1, Ikeja</span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Arival Airport<span class="pull-right">Heathrow, London</span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Date<span class="pull-right">April 12, 2016</span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Time<span class="pull-right">6:00PM GMT</span></h4></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <!-- <%= render 'passenger_form' %> -->
+      <%= render 'confirm_details' %>
+    </div>
+  </div>
+</div>
+<!-- <h1>New Booking</h1>
 
-<%= link_to 'Back', bookings_path %>
+<!-- <%= render 'form' %> -->
+
+
+<!-- <%= link_to 'Back', bookings_path %> -->

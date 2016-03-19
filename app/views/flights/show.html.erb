@@ -1,4 +1,64 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Hello, world!</h1>
+    <p>...</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div>
+<div class="container">
+  <div class="page-header">
+    <h1><%= @flight.airport.city.name %> to <%= @flight.destination.city.name %> <small><%= @flight.plane.airline.name %></small></h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Flight Details<icon class=""></div>
+        <ul class="list-group">
+          <li class="list-group-item"><h4 class="capitalize">Price<span class="pull-right"><%= number_to_currency(@flight.price, locale: :ng) %></span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Airport<span class="pull-right"><%= @flight.airport.name %>, <%= @flight.airport.city.name %></span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Arival Airport<span class="pull-right"><%= @flight.destination.name %>, <%= @flight.destination.city.name %></span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Date<span class="pull-right"><%= @flight.departure.strftime('%B %-m, %Y') %></span></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Time<span class="pull-right"><%= @flight.departure.strftime('%l:%M %P %Z') %></span></h4></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <%= render 'plane' %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="page-header">
+    <h1>Bookings</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Panel heading without title
+          <span class="pull-right">
+            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
+          </span>
+        </div>
+        <div class="panel-body">
+          <%= render 'bookings/passenger_form'%>
+        </div>
+        <div class="panel-body">
+          <%= render 'bookings/passenger_form'%>
+        </div>
+        <div class="panel-footer">Panel footer
+          <span class="pull-right">
+            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <p id="notice"><%= notice %></p>
 
 <p>
   <strong>From:</strong>
@@ -26,4 +86,4 @@
 </p>
 
 <%= link_to 'Edit', edit_flight_path(@flight) %> |
-<%= link_to 'Back', flights_path %>
+<%= link_to 'Back', flights_path %> -->
