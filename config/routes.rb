@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :coupons
-  resources :bookings
   resources :flights
-  resources :passengers
+  resources :passengers do
+    resources :bookings, shallow: true
+  end
   resources :airports
   root 'flights#index'
   # The priority is based upon order of creation: first created -> highest priority.

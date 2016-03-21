@@ -4,7 +4,9 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @passenger = Passenger.find(params[:passenger_id])
+    @bookings = @passenger.bookings
+    render 'passengers/show'
   end
 
   # GET /bookings/1
@@ -15,6 +17,8 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @passenger = Passenger.find(params[:passenger_id])
+    @flight = Flight.find(params[:flight_id])
   end
 
   # GET /bookings/1/edit
@@ -25,10 +29,12 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.code = generate_code
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        BookingMailer.success(@booking).deliver_now
+        format.html { redirect_to passenger_path(@booking.passenger), notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
@@ -61,6 +67,11 @@ class BookingsController < ApplicationController
     end
   end
 
+  def generate_code
+    o = [(0..9), ('A'..'Z')].map { |i| i.to_a }.flatten
+    (0..7).map { o[rand(o.length)] }.join
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
@@ -70,5 +81,10 @@ class BookingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
       params.require(:booking).permit(:flight_id, :passenger_id)
+    end
+
+    def generate_code
+      o = [(0..9), ('A'..'Z')].map { |i| i.to_a }.flatten
+      (0..7).map { o[rand(o.length)] }.join
     end
 end

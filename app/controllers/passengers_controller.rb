@@ -4,7 +4,7 @@ class PassengersController < ApplicationController
   # GET /passengers
   # GET /passengers.json
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.includes(:bookings)
   end
 
   # GET /passengers/1
@@ -25,17 +25,25 @@ class PassengersController < ApplicationController
   # POST /passengers.json
   def create
     @passenger = Passenger.new(passenger_params)
-
-    respond_to do |format|
-      if @passenger.save
-        format.html { redirect_to @passenger, notice: 'Passenger was successfully created.' }
-        format.json { render :show, status: :created, location: @passenger }
-      else
-        format.html { render :new }
-        format.json { render json: @passenger.errors, status: :unprocessable_entity }
+    if Passenger.exists?(email: @passenger.email)
+      @passenger = Passenger.find_by(email: @passenger.email)
+      if params.require(:passenger).permit(:flight_id)
+        redirect_to new_passenger_booking_path(@passenger, params.require(:passenger).permit(:flight_id))
+      end
+    else
+      respond_to do |format|
+        if @passenger.save
+          if params.require(:passenger).permit(:flight_id)
+            redirect_to new_passenger_booking_path(@passenger, params.require(:passenger).permit(:flight_id))
+          end
+        else
+          format.html { render :new }
+          format.json { render json: @passenger.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
+  #
 
   # PATCH/PUT /passengers/1
   # PATCH/PUT /passengers/1.json

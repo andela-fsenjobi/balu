@@ -1,24 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Hello, world!</h1>
+    <p>...</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div>
+<div class="container">
+  <div class="page-header">
+    <h1>Profile</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <ul class="list-group">
+        <li class="list-group-item"><h4> <%= @passenger.name %></h4></li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> <%= @passenger.email %></li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-phone"></span> <%= @passenger.phone %></li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <%= @passenger.address %></li>
+        <%= link_to 'Edit', edit_passenger_path(@passenger), class: 'btn btn-primary btn-block list-group-item' %>
+      </ul>
+    </div>
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">My Bookings</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @passenger.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @passenger.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @passenger.phone %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @passenger.address %>
-</p>
-
-<%= link_to 'Edit', edit_passenger_path(@passenger) %> |
-<%= link_to 'Back', passengers_path %>
+        <!-- Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Flight</th>
+              <th>Status</th>
+              <th>Details</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @passenger.bookings %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

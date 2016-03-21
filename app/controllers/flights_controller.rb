@@ -11,6 +11,7 @@ class FlightsController < ApplicationController
   # GET /flights/1
   # GET /flights/1.json
   def show
+    @passenger = Passenger.new
   end
 
   # GET /flights/new
@@ -67,12 +68,10 @@ class FlightsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_flight
       @flight = Flight.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def flight_params
       params.require(:flight).permit(:from, :to, :departure, :arrival, :plane_id)
     end
