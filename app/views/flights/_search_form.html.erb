@@ -1,7 +1,7 @@
-<form class="form-inline">
+<%= form_tag({controller: 'flights', action: 'search',}, method: 'post', remote: true) do %>
 <div>
   <div class="form-group form-group-lg">
-    <select class="form-control  transparent-input" id="flightFrom" placeholder="Where are you?">
+    <select class="form-control  transparent-input" id="flightFrom" name="from" placeholder="Where are you?">
       <option>Take Off Airport</option>
       <%= @airports.each do |airport| %>
       <option value="<%= airport.id %>"><%= airport.name %></option>
@@ -9,7 +9,7 @@
     </select>
   </div>
   <div class="form-group form-group-lg">
-    <select class="form-control  transparent-input" id="flightTo" placeholder="Where are you?">
+    <select class="form-control  transparent-input" id="flightTo" name="to" placeholder="Where are you?">
       <option>Destination Airport</option>
       <%= @airports.each do |airport| %>
       <option value="<%= airport.id %>"><%= airport.name %></option>
@@ -18,7 +18,7 @@
   </div>
 </div>
   <div class="form-group form-group-lg">
-    <input type="number" class="form-control transparent-input" id="noOfPassengers" placeholder="How many people?">
+    <input type="number" class="form-control transparent-input" id="noOfPassengers" data-placement="left" title="Number of Passengers" value="1">
   </div>
   <div class="form-group form-group-lg">
       <div class='input-group date' id='datetimepicker1'>
@@ -31,9 +31,14 @@
           $(function () {
               $('#datetimepicker1').datetimepicker();
           });
+
+          $(function () {
+            $('#noOfPassengers').tooltip()
+          })
       </script>
   </div>
-  <button type="submit" class="btn btn-default btn-lg">
+  <button type="submit" class="btn btn-default btn-lg btn-block" id="search-submit">
     <span class="glyphicon glyphicon-search transparent-input" aria-hidden="true"></span>
+    Search Flight
   </button>
-</form>
+<% end %>

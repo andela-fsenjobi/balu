@@ -98,7 +98,7 @@ cities = City.create([{"name":"Abuja","state_id":37},
 {"name":"Zaria","state_id":18},
 {"name":"Uyo","state_id":4}])
 
-airlines = Airline.create([{"name":"Aero Contractors: flyaero.com","icao":"NIG","iata":"AJ","callsign":"AEROLINE","email":"zcfbpvpu@airports.com","phone":984039495},
+airlines = Airline.create([{"name":"Aero Contractors","icao":"NIG","iata":"AJ","callsign":"AEROLINE","email":"zcfbpvpu@airports.com","phone":984039495},
 {"name":"Air Peace","icao":"APK","iata":"4P","callsign":"","email":"ububthcv@airports.com","phone":938390390},
 {"name":"Allied Air","icao":"AJK","iata":"","callsign":"BAMBI","email":"lxrzhpqu@airports.com","phone":892741285},
 {"name":"Arik Air","icao":"ARA","iata":"W3","callsign":"ARIK AIR","email":"dfmcckay@airports.com","phone":847092180},

@@ -1,0 +1,12 @@
+<tr>
+  <td>1</td>
+  <td><%= booking.code %></td>
+  <td><%= booking.flight.airport.city.name %> to <%= booking.flight.destination.city.name %></td>
+  <td>Completed</td>
+  <td><%= number_to_currency(booking.flight.price, locale: :ng) %></td>
+  <td>
+    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
+    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
+    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
+  </td>
+</tr>
