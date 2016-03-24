@@ -4,8 +4,8 @@ class FlightsController < ApplicationController
   # GET /flights
   # GET /flights.json
   def index
-    @flights = Flight.all
-    @airports = Airport.includes(:city)
+    @flights = Flight.all.decorate
+    @airports ||= Airport.includes(:city).all
   end
 
   # GET /flights/1
@@ -14,16 +14,20 @@ class FlightsController < ApplicationController
     @passenger = Passenger.new
   end
 
+  def search
+    @flights = Flight.search(search_params).decorate
+  end
+
   # GET /flights/new
   def new
     @flight = Flight.new
-    @airports = Airport.includes(:city)
+    @airports ||= Airport.includes(:city).all
     @planes = Plane.all
   end
 
   # GET /flights/1/edit
   def edit
-    @airports = Airport.includes(:city)
+    @airports ||= Airport.includes(:city).all
     @planes = Plane.all
   end
 
@@ -34,7 +38,7 @@ class FlightsController < ApplicationController
 
     respond_to do |format|
       if @flight.save
-        format.html { redirect_to @flight, notice: 'Flight was successfully created.' }
+        format.html { redirect_to @flight, notice: "Flight was successfully created." }
         format.json { render :show, status: :created, location: @flight }
       else
         format.html { render :new }
@@ -48,7 +52,7 @@ class FlightsController < ApplicationController
   def update
     respond_to do |format|
       if @flight.update(flight_params)
-        format.html { redirect_to @flight, notice: 'Flight was successfully updated.' }
+        format.html { redirect_to @flight, notice: "Flight was successfully updated." }
         format.json { render :show, status: :ok, location: @flight }
       else
         format.html { render :edit }
@@ -62,17 +66,22 @@ class FlightsController < ApplicationController
   def destroy
     @flight.destroy
     respond_to do |format|
-      format.html { redirect_to flights_url, notice: 'Flight was successfully destroyed.' }
+      format.html { redirect_to flights_url, notice: "Flight was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
-  private
-    def set_flight
-      @flight = Flight.find(params[:id])
-    end
+  def search_params
+    params.permit(:from, :to)
+  end
 
-    def flight_params
-      params.require(:flight).permit(:from, :to, :departure, :arrival, :plane_id)
-    end
+  private
+
+  def set_flight
+    @flight = Flight.find(params[:id])
+  end
+
+  def flight_params
+    params.require(:flight).permit(:from, :to, :departure, :arrival, :plane_id)
+  end
 end

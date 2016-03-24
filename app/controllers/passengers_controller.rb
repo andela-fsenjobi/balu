@@ -25,20 +25,18 @@ class PassengersController < ApplicationController
   # POST /passengers.json
   def create
     @passenger = Passenger.new(passenger_params)
+
     if Passenger.exists?(email: @passenger.email)
       @passenger = Passenger.find_by(email: @passenger.email)
       if params.require(:passenger).permit(:flight_id)
         redirect_to new_passenger_booking_path(@passenger, params.require(:passenger).permit(:flight_id))
       end
     else
-      respond_to do |format|
-        if @passenger.save
-          if params.require(:passenger).permit(:flight_id)
-            redirect_to new_passenger_booking_path(@passenger, params.require(:passenger).permit(:flight_id))
-          end
+      if @passenger.save
+        if params.require(:passenger).permit(:flight_id)
+          redirect_to new_passenger_booking_path(@passenger, params.require(:passenger).permit(:flight_id))
         else
-          format.html { render :new }
-          format.json { render json: @passenger.errors, status: :unprocessable_entity }
+          redirect_to passenger_path(@passenger)
         end
       end
     end
@@ -50,7 +48,7 @@ class PassengersController < ApplicationController
   def update
     respond_to do |format|
       if @passenger.update(passenger_params)
-        format.html { redirect_to @passenger, notice: 'Passenger was successfully updated.' }
+        format.html { redirect_to @passenger, notice: "Passenger was successfully updated." }
         format.json { render :show, status: :ok, location: @passenger }
       else
         format.html { render :edit }
@@ -64,19 +62,20 @@ class PassengersController < ApplicationController
   def destroy
     @passenger.destroy
     respond_to do |format|
-      format.html { redirect_to passengers_url, notice: 'Passenger was successfully destroyed.' }
+      format.html { redirect_to passengers_url, notice: "Passenger was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_passenger
-      @passenger = Passenger.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def passenger_params
-      params.require(:passenger).permit(:name, :email, :phone, :address)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_passenger
+    @passenger = Passenger.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def passenger_params
+    params.require(:passenger).permit(:name, :email, :phone, :address)
+  end
 end
