@@ -1,40 +1,16 @@
-<!-- Section 1 -->
 <section id="intro" data-speed="6" data-type="background">
     <div class="container">
       <%= render partial: 'header' %>
     </div>
 </section>
-<!-- Section 2 -->
+
 <section id="home" data-speed="4" data-type="background">
     <div class="container">
       <div class="page-header">
-        <h1>Flights</h1>
+        <h1 id="page-title">Flights</h1>
       </div>
       <div class="row" id="all-flights">
           <%= render @flights %>
       </div>
     </div>
 </section>
-<!-- Section 3 -->
-<section id="about" data-speed="2" data-type="background">
-    <div class="container">
-      <footer>
-        <p>&copy; 2016 Baalu, Inc.</p> <p><%= link_to 'New Flight', new_flight_path %></p>
-      </footer>
-    </div>
-</section>
-
-    <!-- <% @flights.each do |flight| %>
-      <tr>
-        <td><%= flight.from %></td>
-        <td><%= flight.to %></td>
-        <td><%= flight.departure %></td>
-        <td><%= flight.arrival %></td>
-        <td><%= flight.plane_id %></td>
-        <td><%= link_to 'Show', flight %></td>
-        <td><%= link_to 'Edit', edit_flight_path(flight) %></td>
-        <td><%= link_to 'Destroy', flight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-
-<br> -->

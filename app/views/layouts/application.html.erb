@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Baalu</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-</head>
+  <head>
+    <title>Baalu</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  </head>
   <body>
-
     <%= render partial: 'shared/navbar' %>
+
     <%= yield %>
 
+    <section id="footer" data-speed="2" data-type="background">
+        <div class="container">
+          <footer>
+            <p>&copy; 2016 Baalu, Inc.</p>
+          </footer>
+        </div>
+    </section>
   </body>
 </html>
