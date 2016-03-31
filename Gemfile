@@ -10,9 +10,12 @@ gem "turbolinks"
 gem "jbuilder", "~> 2.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "unicorn"
+gem "cocoon"
 gem "momentjs-rails", ">= 2.9.0"
 gem "bootstrap3-datetimepicker-rails", "~> 4.17.37"
 gem "draper", "~> 1.3"
+gem "bcrypt"
+gem "devise"
 
 group :development, :test do
   gem "sqlite3"
@@ -22,6 +25,7 @@ group :development, :test do
   gem "spork"
   gem "database_cleaner"
   gem "mocha"
+  gem "pry"
 end
 
 group :development do

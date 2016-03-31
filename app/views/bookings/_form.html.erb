@@ -1,29 +1,10 @@
-<%= form_for [@passenger, @booking] do |f| %>
-  <% if @booking.errors.any? %>
-  <div class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h3><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h3>
-    <ul>
-    <% @booking.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <%= f.fields_for :passengers do |passenger| %>
+    <%= render "passenger_fields", f: passenger %>
   <% end %>
-    <%= f.hidden_field :flight_id, value: @flight.id %>
-    <%= f.hidden_field :passenger_id, value: @passenger.id %>
-    <div class="form-group">
-      <div class='input-group date' id='datetimepicker1'>
-          <input type='text' name="departure_date" class="form-control" />
-          <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker1').datetimepicker();
-          });
-      </script>
-    </div>
-    <%= f.submit 'Book Flight', class:'btn btn-default btn-block' %>
+  <div class="links">
+    <%= link_to_add_association 'Add Passenger', f, :passengers, class:"btn btn-default"  %>
+    <%= f.submit 'Submit', class:"btn btn-primary pull-right" %>
+  </div>
 <% end %>

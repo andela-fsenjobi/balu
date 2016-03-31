@@ -1,8 +1,8 @@
 class BookingMailer < ApplicationMailer
-  def success(booking)
+  def success(passenger, booking)
     @booking = booking
     @flight = booking.flight
-    @passenger = booking.passenger
-    mail(to: @passenger.email, subject: "Flight Booking Successful")
+    @passenger = passenger
+    mail(to: passenger.email, subject: "Flight Booking Successful")
   end
 end

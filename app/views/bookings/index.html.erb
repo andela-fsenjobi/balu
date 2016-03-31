@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/header' %>
 
-<h1>Listing Bookings</h1>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">My Bookings</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Flight Details (Departure to Destination)</th>
+          <th>Airline</th>
+          <th>Code</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Flight</th>
-      <th>Passenger</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.flight_id %></td>
-        <td><%= booking.passenger_id %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Booking', root_path %>
+      <tbody>
+        <%= render @bookings %>
+      </tbody>
+    </table>
+  </div>
+</div>

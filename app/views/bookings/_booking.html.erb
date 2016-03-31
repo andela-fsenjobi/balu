@@ -1,12 +1,11 @@
 <tr>
-  <td>1</td>
+  <td><%= booking_counter+1 %></td>
+  <td><strong><%= booking.flight.airport.name %>, <%= booking.flight.airport.city.name %></strong> to <strong><%= booking.flight.destination.name %>, <%= booking.flight.destination.city.name %></strong></td>
+  <td><%= booking.flight.plane.airline.name %></td>
   <td><%= booking.code %></td>
-  <td><%= booking.flight.airport.city.name %> to <%= booking.flight.destination.city.name %></td>
-  <td>Completed</td>
-  <td><%= number_to_currency(booking.flight.price, locale: :ng) %></td>
-  <td>
-    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
-    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></button>
-    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-copy"></span></button>
-  </td>
+  <td><%= booking.created_at.strftime("%B %d, %Y") %></td>
+  <td>PAID</td>
+  <td><%= link_to content_tag(:span, "", class: "glyphicon glyphicon-search", title: "View"), booking %></td>
+  <td><%= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit", title: "Edit"), edit_booking_path(booking) %></td>
+  <td><%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove", title: "Delete"), booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>

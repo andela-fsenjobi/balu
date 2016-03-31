@@ -1,45 +1,54 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-
   # GET /bookings
   # GET /bookings.json
   def index
-    @passenger = Passenger.find(params[:passenger_id])
-    @bookings = @passenger.bookings
-    render "passengers/show"
+    if user_signed_in?
+      @bookings = current_user.bookings
+      render :index
+    else
+      redirect_to root_path
+    end
   end
 
-  # GET /bookings/1
-  # GET /bookings/1.json
   def show
   end
 
-  # GET /bookings/new
+  def search
+    @booking = Booking.search(search_params)
+    render :show
+  end
+
   def new
     @booking = Booking.new
-    @passenger = Passenger.find(params[:passenger_id])
     @flight = Flight.find(params[:flight_id])
   end
 
-  # GET /bookings/1/edit
   def edit
+    @flight = @booking.flight
+    render :new
   end
 
-  # POST /bookings
-  # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
     @booking.code = generate_code
-
+    @booking.user_id = current_user.id if user_signed_in?
     respond_to do |format|
       if @booking.save
-        BookingMailer.success(@booking).deliver_now
-        format.html { redirect_to passenger_path(@booking.passenger), notice: "Booking was successfully created." }
+        mail_passengers
+        format.html { redirect_to @booking, notice: "Booking was successfully created." }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def mail_passengers
+    passengers = @booking.passengers
+    passengers.each do |passenger|
+      BookingMailer.success(passenger, @booking).deliver_now
     end
   end
 
@@ -72,6 +81,10 @@ class BookingsController < ApplicationController
     (0..7).map { o[rand(o.length)] }.join
   end
 
+  def search_params
+    params.permit(:code)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -81,11 +94,8 @@ class BookingsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
-    params.require(:booking).permit(:flight_id, :passenger_id)
+    params.require(:booking).permit(:flight_id, :code,
+                                    passengers_attributes: [:name, :email, :address, :phone, :_destroy])
   end
 
-  def generate_code
-    o = [(0..9), ("A".."Z")].map(&:to_a).flatten
-    (0..7).map { o[rand(o.length)] }.join
-  end
 end

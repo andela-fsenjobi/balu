@@ -11,7 +11,8 @@ class FlightsController < ApplicationController
   # GET /flights/1
   # GET /flights/1.json
   def show
-    @passenger = Passenger.new
+    @booking = Booking.new
+    @passenger = @booking.passengers.build
   end
 
   def search

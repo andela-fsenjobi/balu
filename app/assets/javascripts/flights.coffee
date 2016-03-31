@@ -1,6 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   # cache the window object
   $window = $(window)
@@ -10,3 +7,12 @@ $(document).ready ->
       yPos = -($window.scrollTop() / $scroll.data('speed'))
       coords = '50% ' + yPos + 'px'
       $scroll.css backgroundPosition: coords
+
+  $ ->
+    $('.tooltip').tooltip()
+
+  $('.date-picker').datepicker()
+  $('.date-picker').on 'change', ->
+    id = $(this).attr('id')
+    val = $('label[for=\'' + id + '\']').text()
+    $('#msg').text val + ' changed'

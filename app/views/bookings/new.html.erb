@@ -1,48 +1,39 @@
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Hello, world!</h1>
-    <p>...</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="page-header">
+    <h1><%= @flight.airport.city.name %> to <%= @flight.destination.city.name %> <small><%= @flight.plane.airline.name %></small></h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Flight Details</div>
+        <ul class="list-group">
+          <li class="list-group-item"><h4 class="capitalize">Price: <%= number_to_currency(@flight.price, locale: :ng) %></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Airport: <%= @flight.airport.name %>, <%= @flight.airport.city.name %></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Arival Airport: <%= @flight.destination.name %>, <%= @flight.destination.city.name %></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Date: <%= @flight.departure.strftime('%B %-m, %Y') %></h4></li>
+          <li class="list-group-item"><h4 class="capitalize">Departure Time: <%= @flight.departure.strftime('%l:%M %P %Z') %></h4></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <%= render 'plane' %>
+    </div>
   </div>
 </div>
 <div class="container">
   <div class="page-header">
-    <h1>Lagos to Abuja <small>Arik Air</small></h1>
+    <h1>Bookings</h1>
   </div>
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
       <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Flight Details</div>
-        <ul class="list-group">
-          <li class="list-group-item"><h4> <%= @flight.airport.city.name %> to <%= @flight.destination.city.name %></h4> <%= number_to_currency(@flight.price, locale: :ng)  %></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-plane"></span> <%= @flight.plane.airline.name %></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> <%= @flight.departure.strftime("%A") %></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-time"></span> <%= @flight.departure.strftime("%H:%M %Z") %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Personal Details</div>
-        <ul class="list-group">
-          <li class="list-group-item"><h4> <%= @passenger.name %></h4></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> <%= @passenger.email %></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-phone"></span> <%= @passenger.phone %></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <%= @passenger.address %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Book Flight</div>
-        <ul class="list-group">
-          <li class="list-group-item">Departure Date</li>
-          <%= render 'form' %>
-        </ul>
+        <div class="panel-heading">Passengers</div>
+        <div class="panel-body">
+          <%= render 'form'%>
         </div>
-
+        <div class="panel-footer">&nbsp;</div>
       </div>
     </div>
   </div>

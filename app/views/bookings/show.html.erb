@@ -1,14 +1,48 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/header' %>
 
-<p>
-  <strong>Flight:</strong>
-  <%= @booking.flight_id %>
-</p>
+<div class="container">
+  <% unless @booking.nil? %>
+  <div class="page-header">
+    <h2><%= @booking.flight.airport.city.name %> to <%= @booking.flight.destination.city.name %>
+    <small><%= @booking.flight.plane.airline.name %></small>
+      <span class="pull-right">
+        <span class="btn btn-primary"><i class="glyphicon glyphicon-euro"></i> Pay with Paypal</span>
+        <%= link_to content_tag(:i, '', class: "glyphicon glyphicon-edit"),
+                    edit_booking_path(@booking),
+                    class: 'btn btn-primary' %>
 
-<p>
-  <strong>Passenger:</strong>
-  <%= @booking.passenger_id %>
-</p>
-
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', passenger_path(@booking.passenger) %>
+    </h2>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Flight Details</div>
+        <ul class="list-group">
+          <li class="list-group-item"><h4><%= number_to_currency(@booking.flight.price, locale: :ng)  %></h4></li>
+          <li class="list-group-item">From: <%= @booking.flight.airport.name %></li>
+          <li class="list-group-item">To: <%= @booking.flight.destination.name %></li>
+          <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> <%= @booking.flight.departure.strftime("%A %d %B, %Y") %></li>
+          <li class="list-group-item"><span class="glyphicon glyphicon-time"></span> <%= @booking.flight.departure.strftime("%H:%M %Z") %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Passengers' Details</div>
+        <ul class="list-group">
+          <% @booking.passengers.each do |passenger| %>
+            <li class="list-group-item"><%= passenger.name %> (<%= passenger.email %>)</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Warning!</strong> There is no booking with such reference number.
+</div>
+  <% end %>
+</div>
