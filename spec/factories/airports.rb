@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :airport do
-    name "MyString"
+    name "Muritala Muhammed"
     city_id 1
-    email "MyString"
-    phone "MyString"
+    email "mma@nigeria.com"
+    phone "0898787656"
   end
 end

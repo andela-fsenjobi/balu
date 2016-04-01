@@ -55,12 +55,13 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    @flight = @booking.flight
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: "Booking was successfully updated." }
         format.json { render :show, status: :ok, location: @booking }
       else
-        format.html { render :edit }
+        format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
@@ -95,7 +96,7 @@ class BookingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
     params.require(:booking).permit(:flight_id, :code,
-                                    passengers_attributes: [:name, :email, :address, :phone, :_destroy])
+                                    passengers_attributes: [:id, :name, :email, :address, :phone, :_destroy])
   end
 
 end

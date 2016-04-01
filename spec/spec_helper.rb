@@ -11,10 +11,11 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= "test"
   require File.expand_path("../../config/environment", __FILE__)
   require "rspec/rails"
-  require "rspec/autorun"
+  # require "rspec/autorun"
   require "capybara/rails"
   require "capybara/rspec"
   require "database_cleaner"
+  require "factory_girl"
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -47,7 +48,7 @@ Spork.prefork do
     config.order = "random"
 
     # this fixes something, if I remember correctly
-    config.treat_symbols_as_metadata_keys_with_true_values = true
+    # config.treat_symbols_as_metadata_keys_with_true_values = true
 
     # so you dont have to write FactoryGirl.create(...) every time
     config.include FactoryGirl::Syntax::Methods
