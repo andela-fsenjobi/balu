@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :country do
-    name "MyString"
-    abbr "MyString"
+    name "Nigeria"
+    abbr "NG"
   end
 end

@@ -17,6 +17,7 @@ RSpec.describe BookingsController, type: :controller do
       get :index, {}, valid_session
       expect(assigns(:bookings)).to eq([booking])
     end
+    it { expect(response).to render_template(:index) }
   end
 
   describe 'GET #show' do
@@ -25,14 +26,16 @@ RSpec.describe BookingsController, type: :controller do
       get :show, { id: booking.to_param }, valid_session
       expect(assigns(:booking)).to eq(booking)
     end
+    it { expect(response).to render_template(:show) }
   end
 
-  # describe "GET #new" do
-  #   it "assigns a new booking as @booking" do
-  #     get :new, {}, valid_session
-  #     expect(assigns(:booking)).to be_a_new(Booking)
-  #   end
-  # end
+  describe "GET #new" do
+    it "assigns a new booking as @booking" do
+      get :new, {}, valid_session
+      expect(assigns(:booking)).to be_a_new(Booking)
+    end
+    it { expect(response).to render_template(:new) }
+  end
 
   describe 'GET #edit' do
     it "assigns the requested booking as @booking" do
@@ -40,6 +43,7 @@ RSpec.describe BookingsController, type: :controller do
       get :edit, { id: booking.to_param }, valid_session
       expect(assigns(:booking)).to eq(booking)
     end
+    it { expect(response).to render_template(:edit) }
   end
 
   describe 'POST #create' do
