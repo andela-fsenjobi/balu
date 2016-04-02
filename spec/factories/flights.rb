@@ -1,17 +1,14 @@
 FactoryGirl.define do
-  factory :flight do |f|
-    f.from 1
-    f.to 1
-    f.departure "2016-03-17 08:45:07"
-    f.arrival "2016-03-17 08:45:07"
-    f.plane_id 1
-  end
+  factory :flight do
+    from
+    to
+    departure "2016-03-17 08:45:07"
+    arrival "2016-03-17 08:45:07"
+    plane
 
-  factory :invalid_flight, parent: :flight do |f|
-    f.from nil
-    f.to nil
-    f.departure "2016-03-17 08:45:07"
-    f.arrival "2016-03-17 08:45:07"
-    f.plane_id 1
+    trait :invalid do
+      from nil
+      to nil
+    end
   end
 end

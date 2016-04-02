@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  # GET /bookings
-  # GET /bookings.json
+
   def index
     if user_signed_in?
       @bookings = current_user.bookings
@@ -31,16 +30,20 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.code = generate_code
-    @booking.user_id = current_user.id if user_signed_in?
     respond_to do |format|
       if @booking.save
         mail_passengers
-        format.html { redirect_to @booking, notice: "Booking was successfully created." }
+        format.html do
+          redirect_to @booking,
+                      notice: "Booking was successfully created."
+        end
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @booking.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -52,34 +55,34 @@ class BookingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bookings/1
-  # PATCH/PUT /bookings/1.json
   def update
     @flight = @booking.flight
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
+        format.html do
+          redirect_to @booking,
+                      notice: "Booking was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :new }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @booking.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
 
-  # DELETE /bookings/1
-  # DELETE /bookings/1.json
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
+      format.html do
+        redirect_to bookings_url,
+                    notice: "Booking was successfully destroyed."
+      end
       format.json { head :no_content }
     end
-  end
-
-  def generate_code
-    o = [(0..9), ("A".."Z")].map(&:to_a).flatten
-    (0..7).map { o[rand(o.length)] }.join
   end
 
   def search_params
@@ -88,15 +91,15 @@ class BookingsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_booking
     @booking = Booking.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
-    params.require(:booking).permit(:flight_id, :code,
-                                    passengers_attributes: [:id, :name, :email, :address, :phone, :_destroy])
+    params.require(:booking).permit(
+      :flight_id,
+      :user_id,
+      passengers_attributes: [:id, :name, :email, :address, :phone, :_destroy]
+    )
   end
-
 end

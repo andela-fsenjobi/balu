@@ -1,7 +1,11 @@
 FactoryGirl.define do
   factory :booking do
-    flight_id 1
-    user_id nil
-    code "AS123DF45"
+    flight
+    user
+    code "1QWE323ER"
+  end
+
+  trait :invalid do
+    flight_id nil
   end
 end
