@@ -16,6 +16,7 @@ gem "bootstrap3-datetimepicker-rails", "~> 4.17.37"
 gem "draper", "~> 1.3"
 gem "bcrypt"
 gem "devise"
+gem "coveralls", require: false
 
 group :development, :test do
   gem "sqlite3"
@@ -24,6 +25,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "spork"
   gem "database_cleaner"
+  gem "selenium-webdriver"
   gem "mocha"
   gem "pry"
 end

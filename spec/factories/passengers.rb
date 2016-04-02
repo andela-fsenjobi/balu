@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :passenger do
-    booking_id  1
+    booking
     name "Femi Senjobi"
     email "femi@senjobi.com"
     phone "08987654346"
