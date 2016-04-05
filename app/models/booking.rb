@@ -14,12 +14,12 @@ class Booking < ActiveRecord::Base
     where(params.symbolize_keys).first
   end
 
-  def code
+  def get_code
     o = [(0..9), ("A".."Z")].map(&:to_a).flatten
     (0..7).map { o[rand(o.length)] }.join
   end
 
   def generate_code
-    self.code = code
+    self.code = get_code
   end
 end

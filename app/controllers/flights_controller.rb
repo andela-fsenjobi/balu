@@ -2,7 +2,7 @@ class FlightsController < ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flights = Flight.all.decorate
+    @flights = Flight.available
     @airports ||= Airport.includes(:city).all
   end
 
@@ -76,7 +76,7 @@ class FlightsController < ApplicationController
   end
 
   def search_params
-    params.permit(:from, :to)
+    params.permit(:from, :to, :date)
   end
 
   private

@@ -11,6 +11,7 @@ Spork.prefork do
   require "capybara/rspec"
   require "database_cleaner"
   require "factory_girl"
+  require "transactional_capybara/rspec"
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -27,11 +28,11 @@ Spork.prefork do
       DatabaseCleaner.clean_with(:truncation)
     end
 
-    config.before(:each) do
+    config.before(:all) do
       DatabaseCleaner.start
     end
 
-    config.after(:each) do
+    config.after(:all) do
       DatabaseCleaner.clean
     end
   end
