@@ -7,9 +7,16 @@ class Flight < ActiveRecord::Base
 
   def self.search(params)
     if params
-      includes(:airport).all.where(params.symbolize_keys)
+      params = params.symbolize_keys
+      where(to: params[:to], from: params[:from]).
+        where(departure: Time.zone.now..Time.parse(params[:date])).
+        includes(:airport).all.available
     else
-      find(:all)
+      find(:all).available
     end
+  end
+
+  def self.available
+    where("departure > ?", Time.zone.now)
   end
 end

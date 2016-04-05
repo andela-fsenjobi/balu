@@ -1,13 +1,9 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Plane Details </div>
-  <div class="panel-body">
-    <p>Here is a short description of the plane</p>
-  </div>
-
+  <div class="panel-heading">Plane Details</div>
   <ul class="list-group">
-    <li class="list-group-item"><h4 class="capitalize">Reg No<span class="pull-right"><%= @flight.plane.code %></span></h4></li>
-    <li class="list-group-item"><h4 class="capitalize">Name<span class="pull-right"><%= @flight.plane.name %></span></h4></li>
-    <li class="list-group-item"><h4 class="capitalize">Capacity<span class="pull-right"><%= @flight.plane.capacity %></span></h4></li>
-    <li class="list-group-item"><h4 class="capitalize">Seats Left<span class="pull-right">4</span></h4></li>
+    <li class="list-group-item"><p><strong>Reg No: </strong><%= @flight.plane.code %></p></li>
+    <li class="list-group-item"><p><strong>Name: </strong><%= @flight.plane.name %></p></li>
+    <li class="list-group-item"><p><strong>Capacity: </strong><%= @flight.plane.capacity %></p></li>
+    <li class="list-group-item"><p><strong>Seats Left: </strong>4</p></li>
   </ul>
 </div>

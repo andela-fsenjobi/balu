@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - "vendor/**/*"
     - "db/schema.rb"
+    - "db/seeds.rb"
     - "bin/*"
     - "config/environments/*"
     - "app/assets/*"

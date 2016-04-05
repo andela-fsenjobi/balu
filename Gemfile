@@ -28,6 +28,7 @@ group :development, :test do
   gem "selenium-webdriver"
   gem "mocha"
   gem "pry"
+  gem "transactional_capybara"
 end
 
 group :development do

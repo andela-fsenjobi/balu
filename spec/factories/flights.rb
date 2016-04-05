@@ -1,14 +1,20 @@
 FactoryGirl.define do
   factory :flight do
-    from
-    to
-    departure "2016-03-17 08:45:07"
-    arrival "2016-03-17 08:45:07"
+    from { create(:airport, :second).id }
+    to { create(:airport, :third).id }
+    departure Time.zone.tomorrow
+    arrival Time.zone.tomorrow
+    price 50_000
     plane
 
     trait :invalid do
       from nil
       to nil
+    end
+
+    trait :second do
+      to { create(:airport, :second).id }
+      from { create(:airport).id }
     end
   end
 end
