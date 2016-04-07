@@ -16,5 +16,9 @@ FactoryGirl.define do
       to { create(:airport, :second).id }
       from { create(:airport).id }
     end
+
+    trait :departed do
+      departure Time.zone.yesterday
+    end
   end
 end

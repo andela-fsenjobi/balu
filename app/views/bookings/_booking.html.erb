@@ -4,8 +4,8 @@
   <td><%= booking.flight.plane.airline.name %></td>
   <td><%= booking.code %></td>
   <td><%= booking.created_at.strftime("%B %d, %Y") %></td>
-  <td>PAID</td>
+  <td><%= booking.status %></td>
   <td><%= link_to content_tag(:span, "", class: "glyphicon glyphicon-search", title: "View"), booking %></td>
-  <td><%= link_to content_tag(:span, "", class: "glyphicon glyphicon-edit", title: "Edit"), edit_booking_path(booking) %></td>
+  <td><%= booking.actions %></td>
   <td><%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove", title: "Delete"), booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>

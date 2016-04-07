@@ -7,12 +7,10 @@ class FlightsController < ApplicationController
   end
 
   def show
-    @booking = Booking.new
-    @passenger = @booking.passengers.build
   end
 
   def search
-    @flights = Flight.search(search_params).decorate
+    @flights = Flight.search(search_params)
   end
 
   def new

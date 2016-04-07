@@ -4,15 +4,17 @@ class Flight < ActiveRecord::Base
   belongs_to :plane
   belongs_to :airport, foreign_key: :from
   belongs_to :destination, class_name: "Airport", foreign_key: :to
+  validates :from, presence: true
+  validates :to, presence: true
 
-  def self.search(params)
+  def self.search(params = nil)
     if params
       params = params.symbolize_keys
       where(to: params[:to], from: params[:from]).
         where(departure: Time.zone.now..Time.parse(params[:date])).
         includes(:airport).all.available
     else
-      find(:all).available
+      available
     end
   end
 

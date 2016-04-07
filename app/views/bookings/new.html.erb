@@ -7,14 +7,7 @@
   <div class="row">
     <div class="col-lg-4">
       <div class="panel panel-default">
-        <div class="panel-heading">Flight Details</div>
-        <ul class="list-group">
-          <li class="list-group-item"><p><strong>Price: </strong><%= number_to_currency(@flight.price, locale: :ng) %></p></li>
-          <li class="list-group-item"><p><strong>Departure Airport: </strong><%= @flight.airport.name %>, <%= @flight.airport.city.name %></p></li>
-          <li class="list-group-item"><p><strong>Arival Airport: </strong><%= @flight.destination.name %>, <%= @flight.destination.city.name %></p></li>
-          <li class="list-group-item"><p><strong>Departure Date: </strong><%= @flight.departure.strftime('%A, %B %-m, %Y') %></p></li>
-          <li class="list-group-item"><p><strong>Departure Time: </strong><%= @flight.departure.strftime('%l:%M %P %Z') %></p></li>
-        </ul>
+        <%= render 'flights/flight_details' %>
       </div>
     </div>
     <div class="col-lg-8">

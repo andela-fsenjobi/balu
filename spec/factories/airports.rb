@@ -11,6 +11,7 @@ FactoryGirl.define do
 
     trait :third do
       name "Sam Ewang"
+      city { create(:city, :second) }
     end
   end
 end
