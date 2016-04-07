@@ -9,7 +9,7 @@
 <% end %>
   <% unless @booking.nil? %>
   <div class="page-header">
-    <h2><%= @booking.flight.airport.name %>, <%= @booking.flight.airport.city.name %> to <%= @booking.flight.destination.name %>, <%= @booking.flight.destination.city.name %>
+    <h2><%= @booking.flight.airport.city.name %> to <%= @booking.flight.destination.city.name %>
     <small><%= @booking.flight.plane.airline.name %></small>
       <span class="pull-right">
         <span class="btn btn-primary"><i class="glyphicon glyphicon-euro"></i> Pay with Paypal</span>
@@ -23,13 +23,7 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Flight Details</div>
-        <ul class="list-group">
-          <li class="list-group-item"><p><%= number_to_currency(@booking.flight.price, locale: :ng)  %></p></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> <%= @booking.flight.departure.strftime("%A %d %B, %Y") %></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-time"></span> <%= @booking.flight.departure.strftime("%H:%M %Z") %></li>
-        </ul>
+        <%= render 'flights/flight_details' %>
       </div>
     </div>
     <div class="col-lg-6">

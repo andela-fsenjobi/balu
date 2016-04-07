@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
 
   def index
     if user_signed_in?
-      @bookings = current_user.bookings
+      @bookings = current_user.bookings.decorate
       render :index
     else
       redirect_to root_path
@@ -11,10 +11,12 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @flight = @booking.flight
   end
 
   def search
     @booking = Booking.search(search_params)
+    @flight = @booking.flight if @booking
     render :show
   end
 
@@ -92,7 +94,7 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find(params[:id]).decorate
   end
 
   def booking_params

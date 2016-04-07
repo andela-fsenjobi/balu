@@ -1,8 +1,11 @@
 FactoryGirl.define do
+  sequence :email do |n|
+    "person#{n}@baluu.com"
+  end
+
   factory :passenger do
-    booking
     name "Femi Senjobi"
-    email "femi@senjobi.com"
+    email
     phone "08987654346"
     address "Yaba, Lagos"
   end

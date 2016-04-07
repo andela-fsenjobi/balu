@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe FlightsController, type: :controller do
   let(:flight) { create(:flight) }
-
   let(:invalid_flight) { create(:flight, :invalid) }
+  let(:new_invalid_flight) { attributes_for(:flight, :invalid) }
 
   describe 'GET #index' do
     it "assigns all flights as @flights" do
@@ -61,23 +61,22 @@ RSpec.describe FlightsController, type: :controller do
       end
     end
 
-    # context "with invalid params" do
-    #   it "assigns a newly created but unsaved flight as @flight" do
-    #     post :create, { flight: invalid_flight }
-    #     expect(assigns(:flight)).to be_a_new(Flight)
-    #   end
-    #
-    #   it "re-renders the 'new' template" do
-    #     post :create, { flight: invalid_flight }
-    #     expect(response).to render_template("new")
-    #   end
-    # end
+    context "with invalid params" do
+      it "assigns a newly created but unsaved flight as @flight" do
+        post :create, flight: new_invalid_flight
+        expect(assigns(:flight)).to be_a_new(Flight)
+      end
+
+      it "re-renders the 'new' template" do
+        post :create, flight: new_invalid_flight
+        expect(response).to render_template("new")
+      end
+    end
   end
 
   describe 'PUT #update' do
     let(:flight) { create(:flight) }
     let(:new_flight) { attributes_for(:flight) }
-    let(:new_invalid_flight) { attributes_for(:flight) }
     context "with valid params" do
       before(:each) do
         new_flight[:from] = 1
@@ -106,10 +105,10 @@ RSpec.describe FlightsController, type: :controller do
         expect(assigns(:flight)).to eq(flight)
       end
 
-      # it "re-renders the 'edit' template" do
-      #   put :update, { id: flight.to_param, flight: new_invalid_flight }
-      #   expect(response).to render_template("new")
-      # end
+      it "re-renders the 'edit' template" do
+        put :update, id: flight.to_param, flight: new_invalid_flight
+        expect(response).to render_template(:edit)
+      end
     end
   end
 

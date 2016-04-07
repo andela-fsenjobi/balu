@@ -12,8 +12,8 @@ feature "User searches a flight" do
 
   scenario "searches unavailable flights", js: true do
     visit root_path
-    select "Sam Ewang", from: "flightFrom"
-    select "Nnamdi Azikwe", from: "flightTo"
+    select "Abuja", from: "flightFrom"
+    select "Lagos", from: "flightTo"
     fill_in "date-picker", with: Time.zone.now.strftime("%m/%d/%Y")
     click_button "Search Flights"
     expect(page).to have_content "Search Results"
@@ -22,8 +22,8 @@ feature "User searches a flight" do
 
   scenario "searches available flights", js: true do
     visit root_path
-    select "Nnamdi Azikwe", from: "flightFrom"
-    select "Sam Ewang", from: "flightTo"
+    select "Lagos", from: "flightFrom"
+    select "Abuja", from: "flightTo"
     fill_in "date-picker",
             with: Time.zone.tomorrow.tomorrow.strftime("%m/%d/%Y")
     click_button "search-submit"

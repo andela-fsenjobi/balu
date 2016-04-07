@@ -137,6 +137,17 @@ Plane.create([{ name: "Airbus A300 ", code: "WFEAJZGO", capacity: 100, airline_
               { name: "Antonov An-148 ", code: "ESSMAGRX", capacity: 200, airline_id: 13 },
               { name: "Antonov An-158", code: "NNJBTTTC", capacity: 150, airline_id: 14 }])
 
-Flight.create([{ from: 2, to: 9, departure: "2016-03-19 07:53:00", arrival: "2016-03-19 07:53:00", plane_id: 1, price: 50_000 },
-               { from: 26, to: 21, departure: "2016-03-19 07:53:00", arrival: "2016-03-19 07:53:00", plane_id: 20, price: 50_000 },
-               { from: 28, to: 27, departure: "2016-03-19 07:53:00", arrival: "2016-03-19 07:53:00", plane_id: 11, price: 50_000 }])
+Flight.create([{ from: 1, to: 2, departure: Time.zone.yesterday, arrival: Time.zone.now, plane_id: 1, price: 10_000 },
+               { from: 1, to: 3, departure: Time.zone.now, arrival: Time.zone.tomorrow, plane_id: 3, price: 12_000 },
+               { from: 1, to: 4, departure: Time.zone.tomorrow, arrival: Time.zone.tomorrow, plane_id: 5, price: 15_000 },
+               { from: 2, to: 5, departure: Time.zone.tomorrow.tomorrow, arrival: Time.zone.tomorrow.tomorrow, plane_id: 7, price: 13_500 },
+               { from: 6, to: 7, departure: Time.zone.tomorrow.tomorrow, arrival: Time.zone.tomorrow.tomorrow, plane_id: 9, price: 16_000 },
+               { from: 8, to: 10, departure: Time.zone.tomorrow, arrival: Time.zone.tomorrow, plane_id: 11, price: 9_000 },
+               { from: 11, to: 9, departure: Time.zone.tomorrow.tomorrow, arrival: Time.zone.tomorrow.tomorrow, plane_id: 13, price: 7_000 },
+               { from: 8, to: 10, departure: Time.zone.tomorrow, arrival: Time.zone.tomorrow, plane_id: 15, price: 9_000 },
+               { from: 11, to: 9, departure: Time.zone.tomorrow.tomorrow, arrival: Time.zone.tomorrow.tomorrow, plane_id: 17, price: 7_000 },
+               { from: 8, to: 10, departure: Time.zone.tomorrow, arrival: Time.zone.tomorrow, plane_id: 19, price: 9_000 },
+               { from: 11, to: 9, departure: Time.zone.tomorrow.tomorrow, arrival: Time.zone.tomorrow.tomorrow, plane_id: 21, price: 7_000 },
+               { from: 8, to: 10, departure: Time.zone.tomorrow, arrival: Time.zone.tomorrow, plane_id: 11, price: 9_000 },
+               { from: 11, to: 9, departure: Time.zone.tomorrow.tomorrow, arrival: Time.zone.tomorrow.tomorrow, plane_id: 23, price: 7_000 },
+])

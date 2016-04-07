@@ -6,9 +6,12 @@ class Booking < ActiveRecord::Base
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  before_validation :generate_code
+  before_create :generate_code
 
   validates :flight, presence: true
+  validates :passengers, presence: true
+
+  before_update :available?, message: "You cannot update a departed flight"
 
   def self.search(params)
     where(params.symbolize_keys).first
@@ -21,5 +24,9 @@ class Booking < ActiveRecord::Base
 
   def generate_code
     self.code = get_code
+  end
+
+  def available?
+    flight.departure > Time.now
   end
 end

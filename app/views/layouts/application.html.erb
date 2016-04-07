@@ -4,6 +4,7 @@
     <title>Baalu</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
@@ -13,11 +14,26 @@
     <%= yield %>
 
     <section id="footer" data-speed="2" data-type="background">
+      <footer>
         <div class="container">
-          <footer>
-            <p>&copy; 2016 Baalu, Inc.</p>
-          </footer>
+          <div class="row">
+            <div class="col-lg-4">
+              <p>&copy; 2016 Baalu</p>
+            </div>
+            <div class="col-lg-4">
+              <p>With love from <a href="https://www.linkedin.com/in/femi-senjobi-47586557" target="_blank">Femi Senjobi</a></p>
+            </div>
+            <div class="col-lg-4">
+              <ul class="list-inline">
+                <li><a href="https://facebook.com/femisenjobi1" class="icoFacebook" title="Facebook" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+                <li><a href="https://twitter.com/femisenjobi" class="icoTwitter" title="Twitter" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+                <li><a href="https://github.com/andela-fsenjobi" class="icoGithub" title="Github" target="_blank"><i class="fa fa-github fa-lg"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/femi-senjobi-47586557" class="icoLinkedin" title="Linkedin" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </footer>
     </section>
   </body>
 </html>

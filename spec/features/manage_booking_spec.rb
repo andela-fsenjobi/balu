@@ -15,10 +15,7 @@ feature "User books flight" do
     fill_in "phone", with: "0803531312"
     fill_in "address", with: "Yaba"
     click_button "submit"
-    expect(page).to have_content "Nnamdi Azikwe, Lagos to Sam Ewang, Lagos"
-    expect(page).to have_content "Passengers' Details"
     click_link "edit-booking"
-    expect(page).to have_content "Add Passenger"
     fill_in "name", with: "Femi Senjobi"
     fill_in "email", with: "femi@senjobi.com"
     click_button "submit"
@@ -30,7 +27,7 @@ feature "User books flight" do
     visit root_path
     fill_in "reference-no", with: booking.code
     click_button "Manage Booking"
-    expect(page).to have_content "Nnamdi Azikwe, Lagos to Sam Ewang, Lagos"
+    expect(page).to have_content "Lagos to Abuja Aero Contractors"
     expect(page).to have_content "Passengers' Details"
   end
 
