@@ -41,6 +41,7 @@ class BookingsController < ApplicationController
         end
         format.json { render :show, status: :created, location: @booking }
       else
+        @flight = @booking.flight
         format.html { render :new }
         format.json do
           render json: @booking.errors,
