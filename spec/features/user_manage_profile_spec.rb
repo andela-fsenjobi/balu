@@ -43,6 +43,15 @@ feature "Registered user books flight" do
     expect(page).not_to have_content "Sign up"
   end
 
+  scenario "invalid loging in", js: true do
+    visit root_path
+    click_link "Sign in"
+    fill_in "login-email", with: "femi@mini.com"
+    fill_in "login-password", with: "1qw23er45ty6"
+    click_button "Log in"
+    expect(page).to have_content "Error"
+  end
+
   scenario "logged in user books flight", js: true do
     visit root_path
     click_link "Sign in"
